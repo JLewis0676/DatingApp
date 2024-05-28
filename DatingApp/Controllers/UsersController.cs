@@ -9,15 +9,15 @@ namespace DatingApp.Controllers
     [Route("api/[controller]")] 
     public class UsersController: ControllerBase
     {
-        private DataContext _dataContext;
+        private DataContext dataContext;
         public UsersController(DataContext context) {
-            this._dataContext = context;
+            this.dataContext = context;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> getUsers()
         {
-            var users = await _dataContext.Users.ToListAsync();
+            var users = await dataContext.Users.ToListAsync();
             return users;
         }
 
@@ -25,7 +25,7 @@ namespace DatingApp.Controllers
 
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
-            return await _dataContext.Users.FindAsync(id);
+            return await dataContext.Users.FindAsync(id);
         }
     }
 }

@@ -1,18 +1,20 @@
 ﻿using DatingApp.Data;
 using DatingApp.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.Controllers
 {
-    
+
+    [Authorize]
     public class UsersController: BaseAPIController
     {
         private DataContext dataContext;
         public UsersController(DataContext context) {
             this.dataContext = context;
         }
-
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> getUsers()
         {
